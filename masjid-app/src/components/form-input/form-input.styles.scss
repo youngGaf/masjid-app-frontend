@@ -17,10 +17,9 @@ $main-color: black;
     color: $sub-color;
     font-size: 18px;
     padding: 10px 10px 10px 5px;
-    display: block;
     width: 100%;
-    border-radius: 4;
-    border-bottom: 1px solid $sub-color;
+    border-radius: 1px;
+    
     margin: 25px 0;
 
     &:focus {
