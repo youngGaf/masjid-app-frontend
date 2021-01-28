@@ -1,6 +1,7 @@
 import React from 'react';
 import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
+import TextScroller from '../../components/text-scroller/text-scroller.component';
 import './booking-page.styles.scss';
 
 class BookingPage extends React.Component{
@@ -37,24 +38,17 @@ class BookingPage extends React.Component{
         console.log(value);
         this.setState({ email: value })
     }
+    
 
     render(){
         const { email } = this.state
         return (
             <div className='booking'>
-               <div className='booking-form-container'>
-                    <form className='booking-form' onSubmit={this.handleSubmit} >
-                        <FormInput id='f1'
-                            type='email'
-                            name='email'
-                            value={email}
-                            handleChange={this.handleChange}
-                            placeholder='Email'
-                            required
-                        />
-                        <CustomButton id='c1' type='submit'> Book </CustomButton>
-                    </form>
-               </div>
+                <div className='transit-statement'>
+                    <TextScroller text='Asalamualaykum Brothers!!, please kindly come along with your face masks and mat also ensure you adhere with the new regulations'>
+                    </TextScroller>
+                </div>
+
             </div>
         );
     }

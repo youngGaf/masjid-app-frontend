@@ -1,27 +1,20 @@
 .booking{
-    display: flex;
-    justify-content: center;
+    height: 500px;
+    border: 1px solid blue;
 
+    .transit-statement{
+        width: 3000px;
+        height: 30px;
+        // border: 2px solid blue;
+        padding-top: 2px;
+        font-family: monospace;
+        font-size: larger;
+        color: black;
+        font-weight: bold;
+        background-color: saturate($color: rgba(43, 194, 194, 0.904), $amount: 0);
 
-    .booking-form-container{
-        position: relative;
-        width: 800px;
-        margin-top: 100px;
-        
-
-        & #f1{
-            position: absolute;
-            width: 300px;
-            height: 50px;
-            left: 200px;
-            margin-top: 0px;
-            
-
-        }
-        & #c1{
-            position: absolute;
-            left: 450px;
-
-        }
     }
 }
+
+
+
