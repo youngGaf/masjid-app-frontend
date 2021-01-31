@@ -5,10 +5,8 @@ import './header.styles.scss';
 const Header = () => {
     return (
         <div className='header'>
-            <div className='background-image ' style={{
-                backgroundImage: 'url(https://i.postimg.cc/ZnHTP71s/aircraft-airplane-boat-1575833.jpg)'
-            }}>
-                <h2 className='title'> Masjid booking app</h2>
+            <div className='container flex'>
+                <h1 className='title'>Masjid booking app</h1>
                 <Link className='option' to='/admin'> Admin </Link> 
             </div>
         </div>

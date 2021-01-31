@@ -1,18 +1,16 @@
 .booking{
-    height: 500px;
-    border: 1px solid blue;
 
-    .transit-statement{
-        width: 3000px;
+    .transit-element{
         height: 30px;
-        // border: 2px solid blue;
-        padding-top: 2px;
-        font-family: monospace;
-        font-size: larger;
-        color: black;
+        background-color: var(--dark-color);
+        color: #fff;
+        margin-bottom: auto;
         font-weight: bold;
-        background-color: saturate($color: rgba(43, 194, 194, 0.904), $amount: 0);
+    }
 
+    .solat-space{
+        background-color: var(--light-color);
+        height: auto;
     }
 }
 

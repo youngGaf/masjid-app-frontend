@@ -1,7 +1,7 @@
 import React from 'react';
 import FormInput from '../../components/form-input/form-input.component';
-import CustomButton from '../../components/custom-button/custom-button.component';
 import TextScroller from '../../components/text-scroller/text-scroller.component';
+import SolatTime from '../../components/solat-time/solat-time.component';
 import './booking-page.styles.scss';
 
 class BookingPage extends React.Component{
@@ -44,11 +44,14 @@ class BookingPage extends React.Component{
         const { email } = this.state
         return (
             <div className='booking'>
-                <div className='transit-statement'>
-                    <TextScroller text='Asalamualaykum Brothers!!, please kindly come along with your face masks and mat also ensure you adhere with the new regulations'>
+                <section className='transit-element'>
+                    <TextScroller id='text' text='Asalamualaykum Brothers!!, please kindly come along with your face masks and mat also ensure you adhere with the new regulations'>
                     </TextScroller>
-                </div>
-
+                </section>
+                <section className='solat-space'>
+                        <SolatTime />
+                </section>
+                
             </div>
         );
     }

@@ -1,0 +1,48 @@
+.solat-time{
+    display: flex;
+
+    .solat{
+          display: flex;
+          justify-content: center;  
+    }
+    .text{
+        display: flex;
+        justify-content: space-between;    
+    }
+
+    h2{
+        text-align: center;
+    }
+
+    table {
+        height: auto;
+        margin: 20px;
+        border-collapse: collapse;
+        justify-content: center;
+
+
+        th, td {
+            text-align: center;
+            padding: 10px;
+        }  
+    }
+
+    #reserve{
+        max-width: 200px;
+    }
+
+}
+
+.grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 0.5fr);
+
+    *:first-child{
+        grid-row: 1 / span 2;
+    }
+    *:nth-child(3){
+        justify-self: center;
+        margin-top: -240px;
+
+    }
+}
