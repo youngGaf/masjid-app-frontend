@@ -8,7 +8,7 @@
 .header {
     background-color: var(--primary-color);
     color: #fff;
-    height: 70px;
+    height: 150px;
     
     a {
         color: #fff;
@@ -21,8 +21,29 @@
         }
     }
 
+    .oval{
+        border: 1px solid var(--light-color);
+        background-color: var(--light-color);
+        width: 400px;
+        height: 100px;
+        border-radius: 50%;
+    }
+
     .flex{
         justify-content: space-between;
     }
 
+}
+
+// Mobile
+@media(max-width: 500px){
+    .header{
+        .oval{
+            width: 70%;
+        }
+        
+        .flex{
+            flex-direction: column;
+        }
+    }
 }

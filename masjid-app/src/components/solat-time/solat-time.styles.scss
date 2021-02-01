@@ -46,3 +46,22 @@
 
     }
 }
+
+//Tablets
+@media(max-width: 768px){
+
+    .grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 0.5fr 0.5fr;
+        
+        *:first-child{
+            grid-column: 1;
+
+        }
+        *:nth-child(3){
+            justify-self: center;
+            margin: 0px auto;
+        }
+    }
+}
+

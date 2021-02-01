@@ -51,7 +51,9 @@ class BookingPage extends React.Component{
                 <section className='solat-space'>
                         <SolatTime />
                 </section>
-                
+                <section className="booking-form">
+                    
+                </section>
             </div>
         );
     }
