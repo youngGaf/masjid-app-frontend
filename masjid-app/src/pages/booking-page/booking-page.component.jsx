@@ -1,6 +1,8 @@
 import React from 'react';
 import FormInput from '../../components/form-input/form-input.component';
 import TextScroller from '../../components/text-scroller/text-scroller.component';
+import CustomButton from '../../components/custom-button/custom-button.component';
+import BookingList from '../../components/booking-list/booking-list.component';
 import SolatTime from '../../components/solat-time/solat-time.component';
 import './booking-page.styles.scss';
 
@@ -11,7 +13,8 @@ class BookingPage extends React.Component{
         this.state = {
             email: '',
             prayer: 'asr',
-            batch: '1'
+            batch: '1',
+            bookingList: false,
         }
     }
     
@@ -38,21 +41,49 @@ class BookingPage extends React.Component{
         console.log(value);
         this.setState({ email: value })
     }
+
+    handleClick = (e) =>{
+        console.log(e.target.id);
+        this.setState({ bookingList: !this.state.bookingList }, () => {
+            console.log(this.state);
+        });
+    }
     
 
     render(){
-        const { email } = this.state
+        const { email , bookingList } = this.state
         return (
             <div className='booking'>
                 <section className='transit-element'>
                     <TextScroller id='text' text='Asalamualaykum Brothers!!, please kindly come along with your face masks and mat also ensure you adhere with the new regulations'>
                     </TextScroller>
                 </section>
+
                 <section className='solat-space'>
-                        <SolatTime />
+                    <SolatTime />
                 </section>
-                <section className="booking-form">
-                    
+
+                <section className="booking-form my-2">
+                    <div className="container">
+                        <div className="booking-div">
+                            <h2>Batch 1: 1/7</h2>
+                            <CustomButton handleClick={this.handleClick} margin={'m-1'} id='b1'>Book</CustomButton>
+                            <CustomButton margin={'m-1'} id='b2'>Unbook</CustomButton>
+                            { bookingList && 
+                                <div className="mygrid m-1">
+                                    <FormInput 
+                                        id='f1'
+                                        type='email'
+                                        placeholder='Email'
+                                        required
+                                    />
+                                    <CustomButton id='b3'>Send</CustomButton>
+                                    <BookingList id='l1' />
+                                </div> 
+                            }
+                            
+                        </div>
+                    </div>
                 </section>
             </div>
         );

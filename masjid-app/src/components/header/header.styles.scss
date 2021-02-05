@@ -38,8 +38,15 @@
 // Mobile
 @media(max-width: 500px){
     .header{
+        height: 200px;
+
+        .title{
+            width: 300px;
+            text-align: center;
+        }
         .oval{
             width: 70%;
+            height: 40%;
         }
         
         .flex{

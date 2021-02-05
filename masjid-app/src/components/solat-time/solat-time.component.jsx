@@ -4,7 +4,7 @@ import './solat-time.styles.scss';
 
 const SolatTime = () => {
     return (
-            <div className='solat-time container grid'>
+        <div className='solat-time container grid'>
                 <div className="solat card">
                     <table id='t1'>
                         <thead>
@@ -42,13 +42,13 @@ const SolatTime = () => {
                     </table>
                 </div>    
                 
-            <div className="count-down card">
-                <h2>Next prayer time </h2>
-                <div className="text">
-                    <p>Fajr: 06:30</p>
-                    <p>00h:00m:00s</p>
+                <div className="count-down card">
+                    <h2>Next prayer time </h2>
+                    <div className="text">
+                        <p>Fajr: 06:30</p>
+                        <p>00h:00m:00s</p>
+                    </div>
                 </div>
-            </div>
             <CustomButton id='reserve'>Reserve a space</CustomButton>
         </div>
     );

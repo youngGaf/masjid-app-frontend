@@ -50,11 +50,11 @@ export default function BasicTable() {
     <TableBody>
     {data.map((data) => (
         <TableRow key={data.email}>
-        <TableCell component="th" scope="row">
-            {data.fullName}
-        </TableCell>
-        <TableCell align="left">{data.email}</TableCell>
-        <TableCell align="left">{data._id}</TableCell>
+            <TableCell component="th" scope="row">
+                {data.fullName}
+            </TableCell>
+            <TableCell align="left">{data.email}</TableCell>
+            <TableCell align="left">{data._id}</TableCell>
         </TableRow>
     ))}
     </TableBody>
