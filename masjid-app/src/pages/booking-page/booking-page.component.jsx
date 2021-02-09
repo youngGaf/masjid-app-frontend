@@ -71,13 +71,16 @@ class BookingPage extends React.Component{
                             <CustomButton margin={'m-1'} id='b2'>Unbook</CustomButton>
                             { bookingList && 
                                 <div className="mygrid m-1">
-                                    <FormInput 
-                                        id='f1'
-                                        type='email'
-                                        placeholder='Email'
-                                        required
-                                    />
-                                    <CustomButton id='b3'>Send</CustomButton>
+                                    <form className='my-form flex' onSubmit={this.handleSubmit}>
+                                        <FormInput 
+                                            id='f1'
+                                            type='email'
+                                            placeholder='Email'
+                                            required
+                                        />
+                                        <CustomButton type='submit' id='b3'>Send</CustomButton>
+                                    </form>
+                
                                     <BookingList id='l1' />
                                 </div> 
                             }
