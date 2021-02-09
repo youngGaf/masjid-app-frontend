@@ -14,7 +14,8 @@ class BookingPage extends React.Component{
             email: '',
             prayer: 'asr',
             batch: '1',
-            bookingList: false,
+            bookingListTab: false,
+            unbook: false
         }
     }
     
@@ -23,14 +24,14 @@ class BookingPage extends React.Component{
         event.preventDefault();
         const { email, prayer, batch } = this.state;
         const requestParameters = {
-            method: 'post',
+            method: this.state.unbook ? 'delete': 'post',
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({email, prayer, batch})
         }
-
-        const response = await fetch('http://localhost:8080/api/v1/user/book', requestParameters)
+        const URL = this.state.unbook ? 'http://localhost:8080/api/v1/user/unbook': 'http://localhost:8080/api/v1/user/book'
+        const response = await fetch(URL, requestParameters)
         const data = await response.json();
         console.log(data);
         alert(data.message);
@@ -38,53 +39,72 @@ class BookingPage extends React.Component{
     
     handleChange = (e) =>{
         const { value } = e.target;
-        console.log(value);
+        // console.log(value);
         this.setState({ email: value })
     }
 
     handleClick = (e) =>{
-        console.log(e.target.id);
-        this.setState({ bookingList: !this.state.bookingList }, () => {
-            console.log(this.state);
-        });
+        if(e.target.id.includes('b2')){
+            if (this.state.bookingListTab){ 
+                return this.setState({unbook: true},() => {console.log(this.state)});
+            }
+            this.setState({ bookingListTab: !this.state.bookingListTab, unbook: true }, () => {console.log(this.state);
+            });
+        }else{
+            if (this.state.bookingListTab) {
+                return this.setState({unbook: false}, () => {console.log(this.state)});
+            }
+            this.setState({ bookingListTab: !this.state.bookingListTab, unbook: false }, () => {
+                console.log(this.state);
+            });
+        }
+        
     }
     
 
     render(){
-        const { email , bookingList } = this.state
+        const { email , bookingListTab, prayer, batch } = this.state
         return (
             <div className='booking'>
                 <section className='transit-element'>
                     <TextScroller id='text' text='Asalamualaykum Brothers!!, please kindly come along with your face masks and mat also ensure you adhere with the new regulations'>
                     </TextScroller>
                 </section>
-
                 <section className='solat-space'>
                     <SolatTime />
                 </section>
-
                 <section className="booking-form my-2">
                     <div className="container">
                         <div className="booking-div">
                             <h2>Batch 1: 1/7</h2>
-                            <CustomButton handleClick={this.handleClick} margin={'m-1'} id='b1'>Book</CustomButton>
-                            <CustomButton margin={'m-1'} id='b2'>Unbook</CustomButton>
-                            { bookingList && 
+                            <CustomButton 
+                                handleClick={this.handleClick} 
+                                margin={'m-1'} 
+                                id={`b1${!this.state.unbook && this.state.bookingListTab ? '-active': ''}`}>
+                                Book
+                            </CustomButton>
+                            <CustomButton 
+                                handleClick={this.handleClick} 
+                                margin={'m-1'} 
+                                id={`b2${this.state.unbook && this.state.bookingListTab ? '-active': ''}`}>
+                                Unbook
+                            </CustomButton>
+                            { bookingListTab && 
                                 <div className="mygrid m-1">
                                     <form className='my-form flex' onSubmit={this.handleSubmit}>
                                         <FormInput 
                                             id='f1'
                                             type='email'
+                                            value={email}
+                                            onChange={this.handleChange}
                                             placeholder='Email'
                                             required
                                         />
                                         <CustomButton type='submit' id='b3'>Send</CustomButton>
                                     </form>
-                
-                                    <BookingList id='l1' />
+                                    <BookingList id='l1' prayer={prayer} batch={batch}/>
                                 </div> 
                             }
-                            
                         </div>
                     </div>
                 </section>
