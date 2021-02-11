@@ -2,9 +2,9 @@ import React from 'react';
 
 import './custom-button.styles.scss';
 
-const CustomButton = ({ children, margin, handleClick, ...otherProps }) => (
+const CustomButton = ({ children, active, margin, handleClick, ...otherProps }) => (
     <button 
-        className={margin ? `custom-button ${margin}`: 'custom-button'} 
+        className={active ? `custom-button ${margin} ${active}`: `custom-button ${margin}` } 
         {...otherProps} 
         onClick={handleClick}
     >

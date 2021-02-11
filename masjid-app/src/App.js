@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <Header />
       <Switch>
-        <Route exact path='/' component={BookingPage} />
+        <Route exact path='/' render={ (props) => (<BookingPage {...props} batches={2}/>)}/>
         <Route exact path='/admin' component={AdminPage} />
       </Switch>
     </div>

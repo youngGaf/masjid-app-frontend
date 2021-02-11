@@ -11,9 +11,12 @@ const BookingList = ({prayer, batch}) => {
         fetch(`http://localhost:8080/api/v1/user/bookingList?prayer=${prayer}&batch=${batch}`, requestParameters)
         .then(res => res.json())
         .then(data => {
+            console.log(data);
             setBookList(data.data);
-        })
-        .catch(err => console.log(err.message));
+        }).catch(error => {
+            console.log(error.message)
+        });
+
     }, [prayer, batch]);
 
     return (
