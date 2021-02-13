@@ -14,21 +14,9 @@
     }
 
     .booking-form{
+        background-color: var(--light-color);
         .booking-div{
             text-align: center;
-            
-            #b1-active{
-                background-color: white;
-                // transform: scale(0.95);
-                border: 1px solid #333;
-                color: #333;
-            }
-            #b2-active{
-                background-color: white;
-                // transform: scale(0.95);
-                border: 1px solid #333;
-                color: #333;
-            }
             h2{
                 display: inline;
                 padding-bottom: 0px;

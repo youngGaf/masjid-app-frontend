@@ -1,4 +1,5 @@
 import React from 'react';
+import Moment from 'react-moment';
 import CustomButton from '../custom-button/custom-button.component';
 import './solat-time.styles.scss';
 
@@ -10,7 +11,7 @@ const SolatTime = () => {
                         <thead>
                             <tr>
                                 <th>Solat</th>
-                                <th>Jan -11-2021</th>
+                                <th><Moment format={'ll'}/></th>
                             </tr>     
                         </thead>
                         <tbody>

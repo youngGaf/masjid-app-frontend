@@ -1,0 +1,12 @@
+.footer{
+    color: #fff;
+    background-color: var(--primary-color);
+    padding: 2rem;
+
+}
+
+@media(max-width: 500px){
+    .container{
+        text-align: center;
+    }
+}
