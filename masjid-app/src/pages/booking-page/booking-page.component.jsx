@@ -9,7 +9,7 @@ import './booking-page.styles.scss';
 class BookingPage extends React.Component{
     constructor(props){
         super(props)
-
+        console.log(props);
         const { batches, solat, bookingCount } = props;
         
         // convert batches into an array
@@ -65,38 +65,44 @@ class BookingPage extends React.Component{
     handleClick = (e) =>{
         const container = document.getElementById('work-container');
         const btns = container.getElementsByClassName('custom-button');
+        const forms = container.getElementsByClassName('my-form');
+
+        // Set active button
         for(var i=0; i<btns.length; i++){
             var current = document.getElementsByClassName("active");
-            // If there's no active class
+            // If there's an active class
             if (current.length > 0) {
                 current[0].className = current[0].className.replace(" active", "");
             }
             // Add the active class to the current/clicked button
                 e.target.className += " active";
         }
-        if(e.target.id.includes('ub2')){
-            if (this.state.bookingListTab){ 
-                return this.setState({unbook: true},() => {console.log(this.state)});
-            }
-            this.setState({ bookingListTab: !this.state.bookingListTab, unbook: true }, () => {
-                console.log(this.state);
-            });
 
-        }else{
-            if (this.state.bookingListTab) {
-                return this.setState({unbook: false}, () => {console.log(this.state)});
-            }
-            this.setState({ bookingListTab: !this.state.bookingListTab, unbook: false }, () => {
-                console.log(this.state);
-            });
+        // Set dynamic form display
+        for(var j=0; j<forms.length; j++){
+                // check if the last value of the id string matches with that of target
+                if (e.target.id.slice(-1) === forms[j].id.slice(-1)){
+                    forms[j].className = forms[j].className.replace(" display", "");
+                }else{
+                    if(forms[j].className.includes("display")) continue; 
+                    forms[j].className += " display";
+                }
         }
-        
+
+        // Set unbook state
+        if(e.target.id.includes('ub')){
+                return this.setState({unbook: true},() => {console.log(this.state)});
+        } else{
+                return this.setState({unbook: false}, () => {console.log(this.state)});
+        }
     }
+        
+    
     
 
     render(){
         
-        const { email , bookingListTab, prayer, batches, bookingCount } = this.state
+        const { email , prayer, batches, bookingCount } = this.state
         return (
             <div className='booking'>
                 <section className='transit-element'>
@@ -111,7 +117,8 @@ class BookingPage extends React.Component{
                         {batches.map(value => (
                             <div key={value} className="booking-div my-1">
                                 <h2>Batch {value}: {bookingCount[value - 1]}/7</h2> 
-                                <CustomButton 
+                                <CustomButton
+                                    id={`b${value}`} 
                                     handleClick={this.handleClick} 
                                     margin={'m-1'}>
                                     Book
@@ -119,12 +126,12 @@ class BookingPage extends React.Component{
                                 <CustomButton 
                                     handleClick={this.handleClick} 
                                     margin={'m-1'} 
-                                    id='ub2'>
+                                    id={`ub${value}`} >
                                     Unbook
                                 </CustomButton>
-                                { bookingListTab && 
+                                {
                                     <div className="mygrid m-1">
-                                        <form className='my-form flex' id={`b${value}`} onSubmit={this.handleSubmit}>
+                                        <form className='my-form flex display' id={`form${value}`} onSubmit={this.handleSubmit}>
                                             <FormInput 
                                                 id={`f${value}`}
                                                 type='email'

@@ -16,8 +16,8 @@ const TextScroller = ({ text }) => {
   });
 
   return (
-    <div key={key}>
-      <animated.div style={scrolling}>{text}</animated.div>
+    <div className='text-scroll' key={key}>
+      <animated.div className='container' style={scrolling}>{text}</animated.div>
     </div>
   );
 };
