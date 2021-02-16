@@ -63,6 +63,12 @@ class BookingPage extends React.Component{
     }
 
     handleClick = (e) =>{
+
+        // Reserve space
+        if(e.target.id.includes('reserve')){
+            return this.setState({bookingListTab: true}, () =>{console.log(this.state)})
+        }
+
         const container = document.getElementById('work-container');
         const btns = container.getElementsByClassName('custom-button');
         const forms = container.getElementsByClassName('my-form');
@@ -95,6 +101,7 @@ class BookingPage extends React.Component{
         } else{
                 return this.setState({unbook: false}, () => {console.log(this.state)});
         }
+
     }
         
     
@@ -102,7 +109,7 @@ class BookingPage extends React.Component{
 
     render(){
         
-        const { email , prayer, batches, bookingCount } = this.state
+        const { email , prayer, batches, bookingListTab,bookingCount } = this.state
         return (
             <div className='booking'>
                 <section className='transit-element'>
@@ -110,9 +117,10 @@ class BookingPage extends React.Component{
                     </TextScroller>
                 </section>
                 <section className='solat-space'>
-                    <SolatTime />
+                    <SolatTime handleClick={this.handleClick}/>
                 </section>
                 <section className="booking-form">
+                    {bookingListTab && 
                     <div className="container" id='work-container'>
                         {batches.map(value => (
                             <div key={value} className="booking-div my-1">
@@ -129,26 +137,24 @@ class BookingPage extends React.Component{
                                     id={`ub${value}`} >
                                     Unbook
                                 </CustomButton>
-                                {
-                                    <div className="mygrid m-1">
-                                        <form className='my-form flex display' id={`form${value}`} onSubmit={this.handleSubmit}>
-                                            <FormInput 
-                                                id={`f${value}`}
-                                                type='email'
-                                                value={email}
-                                                onChange={this.handleChange}
-                                                placeholder='Email'
-                                                required
-                                            />
-                                            <CustomButton type='submit'>Send</CustomButton>
-                                        </form>
-                                        <BookingList id='l1' prayer={prayer} batch={value}/>
-                                    </div> 
-                                }
+                                <div className="mygrid m-1">
+                                    <form className='my-form flex display' id={`form${value}`} onSubmit={this.handleSubmit}>
+                                        <FormInput 
+                                            id={`f${value}`}
+                                            type='email'
+                                            value={email}
+                                            onChange={this.handleChange}
+                                            placeholder='Email'
+                                            required
+                                        />
+                                        <CustomButton type='submit'>Send</CustomButton>
+                                    </form>
+                                    <BookingList id='l1' prayer={prayer} batch={value}/>
+                                </div> 
                             </div>
                         ))
                         }
-                    </div>
+                    </div>}
                 </section>
             </div>
         );

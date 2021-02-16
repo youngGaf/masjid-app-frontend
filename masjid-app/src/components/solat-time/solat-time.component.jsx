@@ -3,7 +3,7 @@ import Moment from 'react-moment';
 import CustomButton from '../custom-button/custom-button.component';
 import './solat-time.styles.scss';
 
-const SolatTime = () => {
+const SolatTime = ({ handleClick }) => {
     return (
         <div className='solat-time container grid'>
                 <div className="solat card">
@@ -50,7 +50,7 @@ const SolatTime = () => {
                         <p>00h:00m:00s</p>
                     </div>
                 </div>
-            <CustomButton id='reserve'>Reserve a space</CustomButton>
+            <CustomButton handleClick={handleClick} id='reserve'>Reserve a space</CustomButton>
         </div>
     );
 }
