@@ -1,10 +1,59 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Moment from 'react-moment';
+import moment from 'moment';
 import CustomButton from '../custom-button/custom-button.component';
 import './solat-time.styles.scss';
 
-const SolatTime = ({ handleClick }) => {
+const SolatTime = ({ handleClick, prayer, time, batch }) => {
+    const [solat, setSolat] = useState([]);
+    const [count, setCountdown] = useState({
+        hours: undefined,
+        minutes: undefined,
+        seconds: undefined
+    });
+
+
+
+    useEffect(()=> {
+        const requestParameters = {
+            method: 'get'
+        }
+        fetch('http://localhost:8080/api/v1/solat-today', requestParameters)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            setSolat(data.data);
+        }).catch(error => {
+            console.log(error.message)
+        });
+        
+        const interval = setInterval(() => {
+            const today = moment().format('YYYY-MM-DD')
+            // const mytime = moment(time).format('hh:mm')
+
+            console.log(time);
+            const then = moment(`${today}, ${time}`, "YYYY-MM-DD HH:mm");
+            const now = moment();
+            const countdown = moment(then - now);
+            console.log(countdown);
+            const hours = countdown.format('HH');
+            const minutes = countdown.format('mm');
+            const seconds = countdown.format('ss');
+            setCountdown({ hours, minutes, seconds });
+            console.log(count)
+        }, 1000);
+
+        if(interval){
+            return () => {
+                clearInterval(interval);
+              }
+        }
+
+    }, [time, count]);
+
+    const { hours, minutes, seconds } = count
     return (
+        
         <div className='solat-time container grid'>
                 <div className="solat card">
                     <table id='t1'>
@@ -15,39 +64,40 @@ const SolatTime = ({ handleClick }) => {
                             </tr>     
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Subuhi</td>
-                                <td>06:30</td>
-                            </tr>
-                            <tr>
-                                <td>Sunrise</td>
-                                <td>07:00</td>
-                            </tr>
-                            <tr>
-                                <td>Zuhur</td>
-                                <td>07:00</td>
-                            </tr>
-                            <tr>
-                                <td>Asr</td>
-                                <td>07:00</td>
-                            </tr>
-                            <tr>
-                                <td>Maghrib</td>
-                                <td>07:00</td>
-                            </tr>
-                            <tr>
-                                <td>Ishai</td>
-                                <td>07:00</td>
-                            </tr>
+                            {solat.map((value)=> (
+                                <tr key={value._id}>
+                                    <td>{value.prayer}</td>
+                                    <td>{value.time}</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>    
-                
-                <div className="count-down card">
-                    <h2>Next prayer time </h2>
-                    <div className="text">
-                        <p>Fajr: 06:30</p>
-                        <p>00h:00m:00s</p>
+                <div>
+                    <h2>Next Solah</h2>
+                    <div className="countdown-wrapper card">
+                        <div className="countdown-item">
+                            {hours}
+                            <span>hours</span>
+                        </div>
+                        <div className="countdown-item">
+                            {minutes}
+                            <span>minutes</span>
+                        </div>
+                        <div className="countdown-item">
+                            {seconds}
+                            <span>seconds</span>
+                        </div>
+                    </div>
+
+                    <div className="count-down card">
+                        <h2>Next prayer time </h2>
+                        <div className="text">
+                            <p>{prayer}: {time}</p>
+                                <p>Batch: {batch}</p>
+                            <p>Time: <Moment format={'LT'}/></p>
+                        </div>
+                    
                     </div>
                 </div>
             <CustomButton handleClick={handleClick} id='reserve'>Reserve a space</CustomButton>

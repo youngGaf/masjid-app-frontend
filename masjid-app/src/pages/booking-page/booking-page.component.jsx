@@ -9,8 +9,7 @@ import './booking-page.styles.scss';
 class BookingPage extends React.Component{
     constructor(props){
         super(props)
-        console.log(props);
-        const { batches, solat, bookingCount } = props;
+        const { batches, prayer, batch, bookingCount, time } = props;
         
         // convert batches into an array
         const range = ((size, startAt = 1) => { 
@@ -19,7 +18,9 @@ class BookingPage extends React.Component{
 
         this.state = {
             email: '',
-            prayer:  solat.prayer,
+            prayer:  prayer,
+            time: time,
+            batch: batch,
             batches: batches ? range(parseInt(batches)): [1,2],
             bookingCount: bookingCount,
             bookingListTab: false,
@@ -30,13 +31,14 @@ class BookingPage extends React.Component{
     
     handleSubmit = async (event) =>{
         event.preventDefault();
+        console.log(event.target.id.charAt(4));
         const { email, prayer } = this.state;
         const requestParameters = {
             method: this.state.unbook ? 'delete': 'post',
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({email, prayer, batch: event.target.id.charAt(1)})
+            body: JSON.stringify({email, prayer, batch: event.target.id.charAt(4)})
         }
         console.log(requestParameters.body)
         try {
@@ -45,11 +47,7 @@ class BookingPage extends React.Component{
             const data = await response.json();
             console.log(data);
             alert(data.message);
-            this.setState({
-                email: '',
-                bookingListTab: false,
-                unbook: false
-            });
+            window.location.reload();
         } catch (error) {
            console.log(error); 
         }
@@ -109,7 +107,7 @@ class BookingPage extends React.Component{
 
     render(){
         
-        const { email , prayer, batches, bookingListTab,bookingCount } = this.state
+        const { email , prayer, batches, batch, bookingListTab, bookingCount, time } = this.state
         return (
             <div className='booking'>
                 <section className='transit-element'>
@@ -117,7 +115,7 @@ class BookingPage extends React.Component{
                     </TextScroller>
                 </section>
                 <section className='solat-space'>
-                    <SolatTime handleClick={this.handleClick}/>
+                    <SolatTime handleClick={this.handleClick} prayer={prayer} time={time} batch={batch}/>
                 </section>
                 <section className="booking-form">
                     {bookingListTab && 

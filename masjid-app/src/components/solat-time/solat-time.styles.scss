@@ -9,13 +9,38 @@
         display: flex;
         justify-content: space-between;    
     }
+    h1, h2{
+        text-align: center;
+    }
+    .countdown-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        background: rgba(0,0,0,0.5);
 
-    .count-down{
-        margin-top: 150px;
+        .countdown-item {
+            color: #fff;
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            line-height: 40px;
+            margin: 10px;
+            padding-top: 10px;
+            position: relative;
+        }
+
     }
 
-    h2{
-        text-align: center;
+    .count-down{
+        margin-top: 50px;
+
+        p{
+            text-transform: capitalize;
+        }
     }
 
     table {
@@ -28,6 +53,7 @@
         th, td {
             text-align: center;
             padding: 10px;
+            text-transform: capitalize;
         }  
     }
 
@@ -53,14 +79,35 @@
 //Tablets
 @media(max-width: 768px){
     .solat-time{
+      
+        .countdown-wrapper{
+            .countdown-item {
+                color:#fff;
+                font-size: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                line-height: 30px;
+                margin: 10px;
+                padding-top: 10px;
+            }
+        }
+        
         .count-down{
             margin-top: 0px;
+        }
+        .text{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;   
         }
     }
 
     .grid {
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 0.5fr 0.5fr;
+        grid-template-rows: auto;
         
         *:first-child{
             grid-column: 1;

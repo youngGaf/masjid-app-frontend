@@ -12,7 +12,7 @@ function App() {
   useEffect(()=> {
     const requestParameters = {
       method: 'get'
-  }
+    }
   fetch('http://localhost:8080/api/v1/index', requestParameters)
   .then(res => res.json())
   .then(data => {
@@ -31,7 +31,11 @@ function App() {
        {solat && 
         <Route exact path='/' 
           render={ (props) => (<BookingPage {...props} 
-            bookingCount={bookingCount} solat={solat} batches={data.solat.batches}
+            bookingCount={bookingCount} 
+            prayer={solat.prayer} 
+            batch={solat.batch}
+            batches={solat.batches}
+            time={solat.time}
           />)}
         />}
         <Route exact path='/admin' component={AdminPage} />
