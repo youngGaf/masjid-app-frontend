@@ -12,9 +12,7 @@ const SolatTime = ({ handleClick, prayer, time, batch }) => {
         seconds: undefined
     });
 
-
-
-    useEffect(()=> {
+    useEffect(()=>{
         const requestParameters = {
             method: 'get'
         }
@@ -26,7 +24,8 @@ const SolatTime = ({ handleClick, prayer, time, batch }) => {
         }).catch(error => {
             console.log(error.message)
         });
-        
+    }, []);
+    useEffect(()=> {
         const interval = setInterval(() => {
             const today = moment().format('YYYY-MM-DD')
             // const mytime = moment(time).format('hh:mm')
