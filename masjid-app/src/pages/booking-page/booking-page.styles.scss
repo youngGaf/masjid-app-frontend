@@ -24,6 +24,9 @@
             }
 
             .mygrid{
+                padding-left: 200px;
+                padding-right: 150px;
+                
                 .display{
                     display: none;
                 }
@@ -64,6 +67,8 @@
                     width: 100%;
                     grid-template-columns: 1fr;
                     grid-template-rows: auto;
+                    padding: 0;
+                    
     
                     grid-template-areas: 
                     "my-form"

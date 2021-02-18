@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Moment from 'react-moment';
 import moment from 'moment';
+import 'moment-timezone';
 import CustomButton from '../custom-button/custom-button.component';
 import './solat-time.styles.scss';
 
@@ -25,21 +26,22 @@ const SolatTime = ({ handleClick, prayer, time, batch }) => {
             console.log(error.message)
         });
     }, []);
+    
     useEffect(()=> {
         const interval = setInterval(() => {
             const today = moment().format('YYYY-MM-DD')
-            // const mytime = moment(time).format('hh:mm')
-
-            console.log(time);
-            const then = moment(`${today}, ${time}`, "YYYY-MM-DD HH:mm");
+            const mytime ='00:00'
+           
+            const then = moment(`${today}, ${mytime}`, "YYYY-MM-DD HH:mm");
+            // console.log(then._d);
             const now = moment();
-            const countdown = moment(then - now);
-            console.log(countdown);
+            // console.log(now._d);
+            const countdown = moment(then._d - now._d);
             const hours = countdown.format('HH');
             const minutes = countdown.format('mm');
             const seconds = countdown.format('ss');
             setCountdown({ hours, minutes, seconds });
-            console.log(count)
+            console.log(countdown.tz('Europe/London'))
         }, 1000);
 
         if(interval){
@@ -55,22 +57,28 @@ const SolatTime = ({ handleClick, prayer, time, batch }) => {
         
         <div className='solat-time container grid'>
                 <div className="solat card">
-                    <table id='t1'>
-                        <thead>
-                            <tr>
-                                <th>Solat</th>
-                                <th><Moment format={'ll'}/></th>
-                            </tr>     
-                        </thead>
-                        <tbody>
-                            {solat.map((value)=> (
-                                <tr key={value._id}>
-                                    <td>{value.prayer}</td>
-                                    <td>{value.time}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                        { solat ? 
+                            <table id='t1'>
+                                <thead>
+                                    <tr>
+                                        <th>Solat</th>
+                                        <th><Moment format={'ll'}/></th>
+                                    </tr>     
+                                </thead>
+                                <tbody>
+                                    {solat.map((value)=> (
+                                        <tr key={value._id}>
+                                            <td>{value.prayer}</td>
+                                            <td>{value.time}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                             : 
+                            <h2>
+                               SORRY BROTHER, NO SOLAT REGISTERED FOR TODAY YET!!
+                            </h2>
+                        }
                 </div>    
                 <div>
                     <h2>Next Solah</h2>

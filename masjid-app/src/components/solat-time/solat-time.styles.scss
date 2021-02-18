@@ -18,11 +18,13 @@
         justify-content: center;
         flex-wrap: wrap;
         margin-top: 10px;
-        background: rgba(1,1,1,0.5);
+        margin-left: 50px;
+        margin-right: 50px;
+        background: rgba(248, 244, 246, 0.212);
         padding: 10px;
 
         .countdown-item {
-            color: #fff;
+            color: #111;
             font-size: 25px;
             font-weight: bolder;
             display: flex;
@@ -84,7 +86,7 @@
       
         .countdown-wrapper{
             .countdown-item {
-                color:#fff;
+                color:#111;
                 font-size: 20px;
                 display: flex;
                 align-items: center;

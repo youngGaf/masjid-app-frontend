@@ -8,8 +8,13 @@
 .header {
     background-color: var(--primary-color);
     color: #fff;
+    font-weight: bolder;
     height: 150px;
-    
+    background-repeat: no-repeat;
+    background-size: 100%;
+    overflow: hidden;  
+
+
     a {
         color: #fff;
         padding: 10px;
@@ -39,6 +44,9 @@
 @media(max-width: 500px){
     .header{
         height: 200px;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        overflow: hidden;  
 
         .title{
             width: 300px;
@@ -47,6 +55,8 @@
         .oval{
             width: 70%;
             height: 40%;
+            background-size: 100%;
+            background-position: center;
         }
         
         .flex{
