@@ -41,6 +41,11 @@ a {
   height: 100%;
 }
 
+.modal-form{
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 .card{
   background-color: #fff;
   color: #333;

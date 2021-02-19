@@ -4,7 +4,9 @@ import AdminPage from '../src/pages/admin-page/admin-page.component';
 import BookingPage from '../src/pages/booking-page/booking-page.component'
 import Header from '../src/components/header/header.component';
 import Footer from '../src/components/footer/footer.component';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+
 
 function App() {
   const [data, setData] = useState([{}]);

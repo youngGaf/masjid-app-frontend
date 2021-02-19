@@ -30,18 +30,18 @@ const SolatTime = ({ handleClick, prayer, time, batch }) => {
     useEffect(()=> {
         const interval = setInterval(() => {
             const today = moment().format('YYYY-MM-DD')
-            const mytime ='00:00'
+            //const mytime ='00:00'
            
-            const then = moment(`${today}, ${mytime}`, "YYYY-MM-DD HH:mm");
-            // console.log(then._d);
+            const then = moment(`${today}, ${time}`, "YYYY-MM-DD HH:mm");
+            
             const now = moment();
-            // console.log(now._d);
-            const countdown = moment(then._d - now._d);
+            
+            const countdown = moment(then._d - now._d).utc();
             const hours = countdown.format('HH');
             const minutes = countdown.format('mm');
             const seconds = countdown.format('ss');
             setCountdown({ hours, minutes, seconds });
-            console.log(countdown.tz('Europe/London'))
+            
         }, 1000);
 
         if(interval){
@@ -82,7 +82,7 @@ const SolatTime = ({ handleClick, prayer, time, batch }) => {
                 </div>    
                 <div>
                     <h2>Next Solah</h2>
-                    <div className="countdown-wrapper card">
+                    <div className="countdown-wrapper">
                         <div className="countdown-item">
                             {hours}
                             <span>hours</span>

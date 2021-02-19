@@ -1,19 +1,19 @@
+
+
 :root{
     --primary-color: #047aed;
     --secondary-color: #1c3fa8;
     --dark-color: #002440;
     --light-color: #f4f4f4;
+
 }
 
 .header {
-    background-color: var(--primary-color);
+    background-color: #5692C4;
+    background-blend-mode: darken;
     color: #fff;
     font-weight: bolder;
-    height: 150px;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    overflow: hidden;  
-
+    height: 150px; 
 
     a {
         color: #fff;
@@ -22,9 +22,31 @@
         display: flex;
 
         &:hover{
+            color: #fff;
+            text-decoration: none;
             border-bottom: 2px #fff solid;
         }
     }
+
+    .container{
+        background-color: #5692C4;
+        background-repeat: no-repeat;
+        background-size: 50% 100%;
+        background-blend-mode: darken;
+        background-position: right;
+        overflow: hidden; 
+
+        #button{
+            background: none;
+            border: none;
+            
+            &:hover{
+                border-bottom: 2px #fff solid;
+                color: #fff;
+            }
+        }
+    }
+
 
     .oval{
         border: 1px solid var(--light-color);
@@ -37,6 +59,8 @@
     .flex{
         justify-content: space-between;
     }
+
+    
 
 }
 
