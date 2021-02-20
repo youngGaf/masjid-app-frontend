@@ -37,11 +37,11 @@
         overflow: hidden; 
 
         #button{
+            margin-top: 10px;
             background: none;
             border: none;
             
             &:hover{
-                border-bottom: 2px #fff solid;
                 color: #fff;
             }
         }
@@ -71,6 +71,13 @@
         background-repeat: no-repeat;
         background-size: 100%;
         overflow: hidden;  
+
+        .container{
+            background-color: #5692C4;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-blend-mode: normal;
+        }
 
         .title{
             width: 300px;

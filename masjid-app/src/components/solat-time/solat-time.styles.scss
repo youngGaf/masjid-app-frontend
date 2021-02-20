@@ -90,7 +90,7 @@
 //Tablets
 @media(max-width: 768px){
     .solat-time{
-      
+        margin-bottom: 100px;
         .countdown-wrapper{
             .countdown-item {
                 color:#111;
@@ -119,6 +119,7 @@
     .grid {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
+    
         
         *:first-child{
             grid-column: 1;

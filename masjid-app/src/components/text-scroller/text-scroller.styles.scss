@@ -1,8 +1,12 @@
+
 // Mobile
 @media(max-width: 500px){
-    div{
-        display: inline;
-        max-width: fit-content;
-        overflow: hidden;
+    .text-scroll{
+        
+        .base{
+            display: inline;
+            overflow: hidden;
+
+        }
     }
 }

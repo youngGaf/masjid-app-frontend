@@ -1,15 +1,18 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { Switch, Route } from 'react-router-dom';
 import AdminPage from '../src/pages/admin-page/admin-page.component';
 import BookingPage from '../src/pages/booking-page/booking-page.component'
 import Header from '../src/components/header/header.component';
 import Footer from '../src/components/footer/footer.component';
+import { DetailsContext } from './store/store';
+import Unauthorized from '../src/components/unauthorized/unauthorized.component';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 
 function App() {
   const [data, setData] = useState([{}]);
+  const [details] = useContext(DetailsContext);
 
   useEffect(()=> {
     const requestParameters = {
@@ -40,7 +43,11 @@ function App() {
             time={solat.time}
           />)}
         />}
-        <Route exact path='/admin' component={AdminPage} />
+        {details.authenticated ?
+          <Route exact path='/admin' component={AdminPage} /> 
+          :
+          <Unauthorized />
+        }
       </Switch>
       <Footer />
     </div>

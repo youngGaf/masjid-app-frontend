@@ -1,0 +1,23 @@
+.auth{
+    height: 500px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    overflow: hidden;
+    text-align: center;
+
+    h1{
+        color: rgb(238, 6, 6);
+        margin-top: 0;
+        font-weight: bolder;
+        
+    }
+}
+
+// Mobile
+@media(max-width: 758px){
+    .auth{
+        height: 300px;
+        
+    }
+}

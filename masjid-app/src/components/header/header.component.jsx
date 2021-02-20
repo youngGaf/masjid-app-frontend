@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
+import { DetailsContext } from '../../store/store';
 import './header.styles.scss';
 
 
 
-const Header = () => {
+const Header = ({ history, match}) => {
     const [show, setShow] = useState(false);
-    const [details, setDetails] = useState({email: '', password: ''});
+    const [details, setDetails] = useContext(DetailsContext);
 
     const showModal = () => {
         setShow(true);
@@ -20,12 +21,15 @@ const Header = () => {
     }
 
     const handleChange = (e) => {
+        //console.log(e.target.value);
        const { value, name } = e.target;
-       setDetails({[name]: value});
+       setDetails((prevUser) => ({...prevUser, [name]: value}));
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        history.push(`${match.url}admin`);
+        hideModal();
     }
 
     const url = 'https://www.freewebheaders.com/wp-content/gallery/islam/thumbs/thumbs_close-up-of-al-aqsa-mosque-domes-in-palestine-web-header.jpg'
@@ -53,6 +57,7 @@ const Header = () => {
                         <FormInput
                             id='#f-m1'
                             type='email'
+                            name='email'
                             value={email}
                             onChange={handleChange}
                             placeholder='Email'
@@ -60,14 +65,14 @@ const Header = () => {
                         />
                         <FormInput
                             id='#f-m2'
+                            name='password'
                             type='password'
                             value={password}
                             onChange={handleChange}
                             placeholder='Password'
                             required
                         />    
-                        <CustomButton type='submit' id='mb-1' 
-                            margin={'my-2'}>Sign In</CustomButton>
+                        <CustomButton type='submit' id='mb-1' margin={'m-2'}>Sign In</CustomButton>
                     </form> 
                 </Modal.Body>
          
@@ -76,4 +81,4 @@ const Header = () => {
     );
 }
 
-export default Header;
+export default withRouter(Header);
