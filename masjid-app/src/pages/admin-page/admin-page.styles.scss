@@ -1,26 +1,85 @@
 .admin{
-    margin: 20px;
-
-    .admin-form-container{
-        
-        .admin-form{
-            margin-left: 100px;
-            & #f1, #f2 {
-                margin-top: 0px;
-                margin-right: 20px;
-                float: left;
-                height: 40px;
-                width: inherit;
-            }
-            & #c1{
-                float: left;
-                width: auto;
-                height: 40px;
-                padding-bottom: 5px;
+    font-weight: bolder;
+    .add-user{
+        margin-bottom: 50px;
+        .ad-grid{
+            display: flex;
+            
+            #f2{
+                margin-left: 10px;
+                margin-right: 10px;
             }
         }
     }
-    .admin-table{
-        margin: 100px;
+    .register-solah{
+        margin-bottom: 50px;
+        text-align: center;
+        .contain{
+            
+            .flex{
+                #solah,#batch,#batch1{
+                    width: max-content;
+                    margin: auto 10px;
+                    line-height: auto;
+                    padding: 5px 35px 5px 5px;
+                    border-radius: 10px;
+                    
+                    
+                }
+                #f3,#f4{
+                    margin: auto 5px;
+                    height: 30px;
+                    border: 1px solid ;
+                    max-width: 150px;
+                    
+                }
+                #c2{
+                    height: 30px;
+                    line-height: normal;
+                }
+            }
+        }
+    }
+}
+
+//mobile
+
+@media(max-width: 500px){
+    .admin{
+
+        .add-user{
+            .ad-grid{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;;
+
+                #f2{
+                    margin: 0;
+                }
+            }
+        }
+        .register-solah{
+            width: auto;
+            
+    
+            .contain{
+                
+                .flex{
+                    flex-direction: column;
+                    #batch{
+                        margin: 10px auto;
+                    }
+
+                    #f3,#f4{
+                        margin: 5px auto;   
+                    }
+                    #c2{
+                        width: 100%;
+                        height: 50px;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
     }
 }

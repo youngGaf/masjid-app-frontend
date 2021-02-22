@@ -25,9 +25,7 @@ export default function BasicTable() {
         .then(obj => {
             if(obj.data.length !== data.length) {
                 setData(obj.data);
-                // console.log(data);
             }
-            console.log(data);
         })
         .catch(err => {
             console.log(err);

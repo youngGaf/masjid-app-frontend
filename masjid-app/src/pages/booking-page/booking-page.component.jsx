@@ -110,13 +110,19 @@ class BookingPage extends React.Component{
         const { email , prayer, batches, batch, bookingListTab, bookingCount, time } = this.state
         return (
             <div className='booking'>
+
+                {/* Transitioning component section */}
                 <section className='transit-element'>
                     <TextScroller id='text' text='Asalamualaykum Brothers!!, please kindly come along with your face masks and mat also ensure you adhere with the new regulations'>
                     </TextScroller>
                 </section>
+
+                {/* Solat time section */}
                 <section className='solat-space'>
                     <SolatTime handleClick={this.handleClick} prayer={prayer} time={time} batch={batch}/>
                 </section>
+                
+                {/* Booking form section */}
                 <section className="booking-form">
                     {bookingListTab && 
                     <div className="container" id='work-container'>
@@ -154,6 +160,7 @@ class BookingPage extends React.Component{
                         }
                     </div>}
                 </section>
+
             </div>
         );
     }

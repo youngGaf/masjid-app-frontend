@@ -48,14 +48,6 @@
     }
 
 
-    .oval{
-        border: 1px solid var(--light-color);
-        background-color: var(--light-color);
-        width: 400px;
-        height: 100px;
-        border-radius: 50%;
-    }
-
     .flex{
         justify-content: space-between;
     }
@@ -77,19 +69,17 @@
             background-repeat: no-repeat;
             background-size: 100% 100%;
             background-blend-mode: normal;
+            
+            #button{
+                width: max-content;
+            }
         }
 
         .title{
             width: 300px;
             text-align: center;
         }
-        .oval{
-            width: 70%;
-            height: 40%;
-            background-size: 100%;
-            background-position: center;
-        }
-        
+
         .flex{
             flex-direction: column;
         }
