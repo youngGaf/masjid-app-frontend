@@ -36,15 +36,24 @@
                 #c2{
                     height: 30px;
                     line-height: normal;
+                    max-width: 150px;
                 }
             }
         }
     }
+   .user-list{
+       text-align: center;
+       height: 300px;
+       
+
+       .table{
+            padding: 10px;
+       }
+   } 
 }
 
 //mobile
-
-@media(max-width: 500px){
+@media(max-width: 700px){
     .admin{
 
         .add-user{
@@ -59,8 +68,6 @@
             }
         }
         .register-solah{
-            width: auto;
-            
     
             .contain{
                 

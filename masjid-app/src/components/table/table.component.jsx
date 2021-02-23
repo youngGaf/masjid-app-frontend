@@ -12,6 +12,7 @@ import './table.styles.scss';
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
+    
   },
 });
 

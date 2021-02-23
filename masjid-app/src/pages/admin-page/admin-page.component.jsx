@@ -123,10 +123,13 @@ const AdminPage = () => {
             {/* Users list */}
             <section className='user-list'>
                 <h2 className='my-3'>Users list</h2>
-                <div>
+                <div className="table container">
                     <BasicTable/>
                 </div>
-            </section>            
+               
+            </section> 
+
+            {/* Registered Solah */}
         </div>
     );
 }
