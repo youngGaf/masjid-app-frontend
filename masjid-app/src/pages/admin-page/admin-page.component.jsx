@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 import BasicTable from '../../components/table/table.component';
@@ -6,8 +6,24 @@ import './admin-page.styles.scss';
 
 const AdminPage = () => {
     const [user, setUser] = useState({ fullName: '', email: '' });
-    // const [solah, setSolah] = useState({prayer: '',batch: '', batches: '', time: '', date: ''})
+    const [tabs, setTabs] = useState({userList: false, addedSolah: false, registeredSolah: []})
 
+    useEffect(()=>{
+        const requestParameters = {
+            method: 'get',
+        }
+        fetch('http://localhost:8080/api/v1/admin/all-solah', requestParameters)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            setTabs((prevUser) => ({...prevUser, registeredSolah: data.data}))
+        }).catch(error => {
+            console.log(error.message)
+        });
+    }, []);
+    
+    
+    
     const handleChange = async (e) => {
         if(e.target.id === 'f1' || 'f2'){
             const { name, value } = e.target;
@@ -15,7 +31,16 @@ const AdminPage = () => {
         } 
     }
 
-
+    const handleClick = async (e) => {
+        const { userList, addedSolah } = tabs;
+        if(e.target.id === 'but1'){
+            setTabs((prevUser) => ({...prevUser, userList: !userList }));
+        }else{
+            setTabs((prevUser) => ({...prevUser, addedSolah: !addedSolah }));
+            
+        }
+    }
+  
     const handleSubmit = async (e) => {
         e.preventDefault();
         if(e.target.className === 'flex'){
@@ -50,7 +75,7 @@ const AdminPage = () => {
         
     }
 
-
+    const { userList, addedSolah, registeredSolah } = tabs;
     return (
         <div className='admin container'>
             {/* Add user */}
@@ -75,7 +100,7 @@ const AdminPage = () => {
                     <CustomButton id='c1' type='submit'>Add new user </CustomButton>
                 </form>
             </section>
-            
+
             {/* Register solah */}
             <section className='register-solah'>
                 <div className="contain">
@@ -119,17 +144,36 @@ const AdminPage = () => {
                     </form>
                 </div>
             </section>
-
             {/* Users list */}
-            <section className='user-list'>
-                <h2 className='my-3'>Users list</h2>
-                <div className="table container">
-                    <BasicTable/>
-                </div>
-               
+            <section className='user-list container'>
+                <CustomButton id='but1' handleClick={handleClick}> View user list </CustomButton>
+                {userList &&
+                    <div className="table">
+                        <h2 className='my-3'>Users list</h2>
+                        <BasicTable/>
+                    </div>
+                }   
             </section> 
 
             {/* Registered Solah */}
+            <section className='registered-solah'>
+                <CustomButton id='but2' handleClick={handleClick}> View recently registered solah </CustomButton>
+                {addedSolah &&
+                    <div className="container">
+                        <ul>
+                           {registeredSolah.map((solah) =>
+                               (<li key={solah._id}> 
+                                    <p>Prayer: {solah.prayer}</p>
+                                    <p>Time: {solah.time}</p>
+                                    <p>Batch: {solah.batch}</p>
+                                    <p>Batches: {solah.batches}</p>
+                                    <p>Date: {solah.registeredDate}</p>
+                               </li>)
+                           )} 
+                        </ul>
+                    </div>
+                }
+            </section>
         </div>
     );
 }

@@ -43,12 +43,33 @@
     }
    .user-list{
        text-align: center;
-       height: 300px;
+       height: auto;
+       margin-bottom: 20px;
        
 
        .table{
             padding: 10px;
        }
+   }
+   .registered-solah{
+        text-align: center;
+        margin-bottom: 20px;
+
+        ul{
+            scroll-behavior: smooth;
+        }
+        li{
+            width: 50vw;
+            height: 3rem;
+        }
+
+        p{
+            float: left;
+            padding: .5rem 1rem;
+           
+            text-transform: capitalize;
+            
+        }
    } 
 }
 
@@ -88,5 +109,23 @@
                 }
             }
         }
+
+        .registered-solah{
+            text-align: center;
+            margin-bottom: 20px;
+    
+            ul{
+                scroll-behavior: smooth;
+            }
+            li{
+                width: max-content;
+            }
+    
+            p{
+
+                text-transform: capitalize;
+                
+            }
+       } 
     }
 }
