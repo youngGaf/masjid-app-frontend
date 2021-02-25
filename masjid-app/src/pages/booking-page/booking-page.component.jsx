@@ -21,7 +21,7 @@ class BookingPage extends React.Component{
             prayer:  prayer,
             time: time,
             batch: batch,
-            batches: batches ? range(parseInt(batches)): [1,2],
+            batches: batches ? range(parseInt(batches)): [0],
             bookingCount: bookingCount,
             bookingListTab: false,
             unbook: false
@@ -61,37 +61,43 @@ class BookingPage extends React.Component{
     }
 
     handleClick = (e) =>{
+        const { bookingCount } = this.state;
 
+        if(bookingCount.length === 5){
+            alert('Sorry you can no longer book today, try again tomorrow');
+            return
+        }
         // Reserve space
         if(e.target.id.includes('reserve')){
             return this.setState({bookingListTab: true}, () =>{console.log(this.state)})
         }
 
-        const container = document.getElementById('work-container');
-        const btns = container.getElementsByClassName('custom-button');
-        const forms = container.getElementsByClassName('my-form');
-
-        // Set active button
-        for(var i=0; i<btns.length; i++){
-            var current = document.getElementsByClassName("active");
-            // If there's an active class
-            if (current.length > 0) {
-                current[0].className = current[0].className.replace(" active", "");
-            }
-            // Add the active class to the current/clicked button
-                e.target.className += " active";
-        }
-
-        // Set dynamic form display
-        for(var j=0; j<forms.length; j++){
-                // check if the last value of the id string matches with that of target
-                if (e.target.id.slice(-1) === forms[j].id.slice(-1)){
-                    forms[j].className = forms[j].className.replace(" display", "");
-                }else{
-                    if(forms[j].className.includes("display")) continue; 
-                    forms[j].className += " display";
+            const container = document.getElementById('work-container');
+            const btns = container.getElementsByClassName('custom-button');
+            const forms = container.getElementsByClassName('my-form');
+    
+            // Set active button
+            for(var i=0; i<btns.length; i++){
+                var current = document.getElementsByClassName("active");
+                // If there's an active class
+                if (current.length > 0) {
+                    current[0].className = current[0].className.replace(" active", "");
                 }
-        }
+                // Add the active class to the current/clicked button
+                    e.target.className += " active";
+            }
+    
+            // Set dynamic form display
+            for(var j=0; j<forms.length; j++){
+                    // check if the last value of the id string matches with that of target
+                    if (e.target.id.slice(-1) === forms[j].id.slice(-1)){
+                        forms[j].className = forms[j].className.replace(" display", "");
+                    }else{
+                        if(forms[j].className.includes("display")) continue; 
+                        forms[j].className += " display";
+                    }
+            }
+
 
         // Set unbook state
         if(e.target.id.includes('ub')){
