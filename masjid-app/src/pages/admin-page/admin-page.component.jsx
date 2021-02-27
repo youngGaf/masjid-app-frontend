@@ -6,7 +6,8 @@ import './admin-page.styles.scss';
 
 const AdminPage = () => {
     const [user, setUser] = useState({ fullName: '', email: '' });
-    const [tabs, setTabs] = useState({userList: false, addedSolah: false, registeredSolah: []})
+    const [tabs, setTabs] = useState({userList: false, addedSolah: false, registeredSolah: []});
+
 
     const url = process.env.REACT_APP_URL ? 
         `${process.env.REACT_APP_URL}` : 'http://localhost:8080'
@@ -81,6 +82,7 @@ const AdminPage = () => {
     }
 
     const { userList, addedSolah, registeredSolah } = tabs;
+
     return (
         <div className='admin container'>
             {/* Add user */}

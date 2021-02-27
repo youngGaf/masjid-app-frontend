@@ -49,7 +49,7 @@ function App() {
         {details.authenticated ?
           <Route exact path='/admin' component={AdminPage} /> 
           :
-          <Unauthorized />
+          solat && <Unauthorized />
         }
       </Switch>
       <Footer />
