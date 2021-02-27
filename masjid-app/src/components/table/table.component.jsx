@@ -20,8 +20,11 @@ const useStyles = makeStyles({
 export default function BasicTable() {
     const [data, setData] = useState([]);
 
+    const url = process.env.REACT_APP_URL ? 
+        `${process.env.REACT_APP_URL}` : 'http://localhost:8080'
+
     useEffect(() => {
-        fetch('http://localhost:8080/api/v1/admin/all-users')
+        fetch(`${url}/api/v1/admin/all-users`)
         .then((response) => response.json())
         .then(obj => {
             if(obj.data.length !== data.length) {
@@ -31,33 +34,33 @@ export default function BasicTable() {
         .catch(err => {
             console.log(err);
         })
-    }, [data])
+    }, [data, url])
 
     
     const classes = useStyles();
 
     return (
-    <TableContainer component={Paper}>
-    <Table className={classes.table} aria-label="simple table">
-    <TableHead>
-    <TableRow className='table-row'>
-        <TableCell> Full&nbsp; Name</TableCell>
-        <TableCell align="left">Email</TableCell>
-        <TableCell align="left">id</TableCell>
-    </TableRow>
-    </TableHead>
-    <TableBody>
-    {data.map((data) => (
-        <TableRow key={data.email}>
-            <TableCell component="th" scope="row">
-                {data.fullName}
-            </TableCell>
-            <TableCell align="left">{data.email}</TableCell>
-            <TableCell align="left">{data._id}</TableCell>
+        <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+        <TableRow className='table-row'>
+            <TableCell> Full&nbsp; Name</TableCell>
+            <TableCell align="left">Email</TableCell>
+            <TableCell align="left">id</TableCell>
         </TableRow>
-    ))}
-    </TableBody>
-    </Table>
-    </TableContainer>
+        </TableHead>
+        <TableBody>
+        {data.map((data) => (
+            <TableRow key={data.email}>
+                <TableCell component="th" scope="row">
+                    {data.fullName}
+                </TableCell>
+                <TableCell align="left">{data.email}</TableCell>
+                <TableCell align="left">{data._id}</TableCell>
+            </TableRow>
+        ))}
+        </TableBody>
+        </Table>
+        </TableContainer>
   );
 }

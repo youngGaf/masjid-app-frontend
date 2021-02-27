@@ -8,11 +8,14 @@ const AdminPage = () => {
     const [user, setUser] = useState({ fullName: '', email: '' });
     const [tabs, setTabs] = useState({userList: false, addedSolah: false, registeredSolah: []})
 
+    const url = process.env.REACT_APP_URL ? 
+        `${process.env.REACT_APP_URL}` : 'http://localhost:8080'
+
     useEffect(()=>{
         const requestParameters = {
             method: 'get',
         }
-        fetch('http://localhost:8080/api/v1/admin/all-solah', requestParameters)
+        fetch(`${url}/api/v1/admin/all-solah`, requestParameters)
         .then(res => res.json())
         .then(data => {
             console.log(data);
@@ -54,7 +57,7 @@ const AdminPage = () => {
                 },
                 body: JSON.stringify(values)
             }
-            const response = await fetch('http://localhost:8080/api/v1/admin/add-solah', requestParameters);
+            const response = await fetch(`${url}/api/v1/admin/add-solah`, requestParameters);
             const data = await response.json();
             alert(data.message);
             window.location.reload(false);
@@ -67,7 +70,7 @@ const AdminPage = () => {
                 },
                 body: JSON.stringify(user)
             }
-            const response = await fetch('http://localhost:8080/api/v1/admin/add-user', requestParameters);
+            const response = await fetch(`${url}/api/v1/admin/add-user`, requestParameters);
             const data = await response.json();
             alert(data.message);
             window.location.reload(false);

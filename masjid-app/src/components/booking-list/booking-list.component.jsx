@@ -4,11 +4,15 @@ import './booking-list.styles.scss';
 const BookingList = ({prayer, batch}) => {
     const [bookList, setBookList] = useState([]);
 
+    const url = process.env.REACT_APP_URL ? 
+        `${process.env.REACT_APP_URL}` : 'http://localhost:8080'
+        
+
     useEffect(() => {
         const requestParameters = {
             method: 'get'
         }
-        fetch(`http://localhost:8080/api/v1/user/bookingList?prayer=${prayer}&batch=${batch}`, requestParameters)
+        fetch(`${url}/api/v1/user/bookingList?prayer=${prayer}&batch=${batch}`, requestParameters)
         .then(res => res.json())
         .then(data => {
             console.log(data);
@@ -17,7 +21,7 @@ const BookingList = ({prayer, batch}) => {
             console.log(error.message)
         });
 
-    }, [prayer, batch]);
+    }, [prayer, batch, url]);
 
     return (
         <ul>

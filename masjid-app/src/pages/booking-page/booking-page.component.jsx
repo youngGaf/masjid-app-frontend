@@ -10,7 +10,7 @@ class BookingPage extends React.Component{
     constructor(props){
         super(props)
         const { batches, prayer, batch, bookingCount, time } = props;
-        
+
         // convert batches into an array
         const range = ((size, startAt = 1) => { 
             return [...Array(size).keys()].map(i => i + startAt);
@@ -28,8 +28,11 @@ class BookingPage extends React.Component{
         }
     }
     
-    
     handleSubmit = async (event) =>{
+        // Define url
+        const url = process.env.REACT_APP_URL ? 
+            `${process.env.REACT_APP_URL}` : 'http://localhost:8080'
+        
         event.preventDefault();
         console.log(event.target.id.charAt(4));
         const { email, prayer } = this.state;
@@ -42,7 +45,7 @@ class BookingPage extends React.Component{
         }
         console.log(requestParameters.body)
         try {
-            const URL = this.state.unbook ? 'http://localhost:8080/api/v1/user/unbook': 'http://localhost:8080/api/v1/user/book'
+            const URL = this.state.unbook ? `${url}/api/v1/user/unbook`: `${url}/api/v1/user/book`
             const response = await fetch(URL, requestParameters)
             const data = await response.json();
             console.log(data);

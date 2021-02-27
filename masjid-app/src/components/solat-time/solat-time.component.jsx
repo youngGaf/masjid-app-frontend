@@ -13,11 +13,14 @@ const SolatTime = ({ handleClick, prayer, time, batch }) => {
         seconds: undefined
     });
 
+    const url = process.env.REACT_APP_URL ? 
+        `${process.env.REACT_APP_URL}` : 'http://localhost:8080'
+
     useEffect(()=>{
         const requestParameters = {
             method: 'get'
         }
-        fetch('http://localhost:8080/api/v1/solat-today', requestParameters)
+        fetch(`${url}/api/v1/solat-today`, requestParameters)
         .then(res => res.json())
         .then(data => {
             console.log(data);
@@ -25,7 +28,7 @@ const SolatTime = ({ handleClick, prayer, time, batch }) => {
         }).catch(error => {
             console.log(error.message)
         });
-    }, []);
+    }, [url]);
     
     useEffect(()=> {
         const interval = setInterval(() => {

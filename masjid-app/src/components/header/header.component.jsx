@@ -12,6 +12,9 @@ const Header = ({ history, match}) => {
     const [show, setShow] = useState(false);
     const [details, setDetails] = useContext(DetailsContext);
 
+    const url = process.env.REACT_APP_URL ? 
+        `${process.env.REACT_APP_URL}` : 'http://localhost:8080'
+
     // Keep logged in session
     useEffect(()=>{
         const data = JSON.parse(localStorage.getItem('details')) || {};
@@ -45,7 +48,8 @@ const Header = ({ history, match}) => {
               },
               body: JSON.stringify(details)
         }
-        fetch('http://localhost:8080/api/v1/admin/auth', requestParameters)
+        
+        fetch(`${url}/api/v1/admin/auth`, requestParameters)
         .then(res => res.json())
         .then(({ data, status, message}) => {
             if(status === 'success'){
@@ -66,12 +70,12 @@ const Header = ({ history, match}) => {
 
     }
 
-    const url = 'https://www.freewebheaders.com/wp-content/gallery/islam/thumbs/thumbs_close-up-of-al-aqsa-mosque-domes-in-palestine-web-header.jpg'
+    const imageUrl = 'https://www.freewebheaders.com/wp-content/gallery/islam/thumbs/thumbs_close-up-of-al-aqsa-mosque-domes-in-palestine-web-header.jpg'
 
     const { email, password, currentUser } = details;
     return (
         <div className='header' >
-            <div className='container flex' style={{backgroundImage: `url(${url})`}}>
+            <div className='container flex' style={{backgroundImage: `url(${imageUrl})`}}>
                 <h1 className='title'><Link to='/'>Masjid booking app</Link></h1>
                 {currentUser ? 
                 <CustomButton id='button' handleClick={showModal}>Admin {currentUser}</CustomButton>
