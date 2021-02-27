@@ -11,6 +11,8 @@ const AdminPage = () => {
     const url = process.env.REACT_APP_URL ? 
         `${process.env.REACT_APP_URL}` : 'http://localhost:8080'
 
+    console.log(url);
+
     useEffect(()=>{
         const requestParameters = {
             method: 'get',
@@ -23,7 +25,7 @@ const AdminPage = () => {
         }).catch(error => {
             console.log(error.message)
         });
-    }, []);
+    }, [url]);
     
     
     

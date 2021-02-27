@@ -14,11 +14,14 @@ function App() {
   const [data, setData] = useState([{}]);
   const [details] = useContext(DetailsContext);
 
+  const url = process.env.REACT_APP_URL ? 
+  `${process.env.REACT_APP_URL}` : 'http://localhost:8080'
+
   useEffect(()=> {
     const requestParameters = {
       method: 'get'
     }
-  fetch('http://localhost:8080/api/v1/index', requestParameters)
+  fetch(`${url}/api/v1/index`, requestParameters)
   .then(res => res.json())
   .then(data => {
       console.log(data);
@@ -26,7 +29,7 @@ function App() {
   }).catch(error => {
       console.log(error.message)
   });
-  },[]);
+  },[url]);
 
   const { solat, bookingCount } = data;
   return (
