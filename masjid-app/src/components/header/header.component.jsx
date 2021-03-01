@@ -4,7 +4,9 @@ import Modal from 'react-bootstrap/Modal';
 import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
 import { DetailsContext } from '../../store/store';
+import Background from './Background.jpg';
 import './header.styles.scss';
+
 
 
 
@@ -70,12 +72,12 @@ const Header = ({ history, match}) => {
 
     }
 
-    const imageUrl = 'https://www.freewebheaders.com/wp-content/gallery/islam/thumbs/thumbs_close-up-of-al-aqsa-mosque-domes-in-palestine-web-header.jpg'
+
 
     const { email, password, currentUser } = details;
     return (
         <div className='header' >
-            <div className='container flex' style={{backgroundImage: `url(${imageUrl})`}}>
+            <div className='container flex' style={{backgroundImage: `url(${Background})`}}>
                 <h1 className='title'><Link to='/'>Masjid booking app</Link></h1>
                 {currentUser ? 
                 <CustomButton id='button' handleClick={showModal}>Admin {currentUser}</CustomButton>
