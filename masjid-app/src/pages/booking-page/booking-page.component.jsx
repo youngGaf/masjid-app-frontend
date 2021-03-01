@@ -48,7 +48,6 @@ class BookingPage extends React.Component{
             const URL = this.state.unbook ? `${url}/api/v1/user/unbook`: `${url}/api/v1/user/book`
             const response = await fetch(URL, requestParameters)
             const data = await response.json();
-            console.log(data);
             alert(data.message);
             window.location.reload();
         } catch (error) {

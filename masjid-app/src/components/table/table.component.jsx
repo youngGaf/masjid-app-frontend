@@ -1,4 +1,4 @@
-import React, { useState, useEffect }from 'react';
+import React, { useState, useEffect, useContext }from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { DetailsContext } from '../../store/store'
 import './table.styles.scss';
 
 const useStyles = makeStyles({
@@ -19,12 +20,21 @@ const useStyles = makeStyles({
 
 export default function BasicTable() {
     const [data, setData] = useState([]);
+    const [details] = useContext(DetailsContext);
 
     const url = process.env.REACT_APP_URL ? 
         `${process.env.REACT_APP_URL}` : 'http://localhost:8080'
 
+
     useEffect(() => {
-        fetch(`${url}/api/v1/admin/all-users`)
+        const requestParameters = {
+            method: 'get',
+            headers: {
+                'x-auth-token': details.token
+            }
+        }
+
+        fetch(`${url}/api/v1/admin/all-users`, requestParameters)
         .then((response) => response.json())
         .then(obj => {
             if(obj.data.length !== data.length) {
@@ -34,7 +44,7 @@ export default function BasicTable() {
         .catch(err => {
             console.log(err);
         })
-    }, [data, url])
+    }, [data, details.token, url])
 
     
     const classes = useStyles();

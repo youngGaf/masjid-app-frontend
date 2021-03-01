@@ -55,7 +55,7 @@ const Header = ({ history, match}) => {
         .then(res => res.json())
         .then(({ data, status, message}) => {
             if(status === 'success'){
-                console.log(data);
+                //console.log(data);
                 setDetails((prevDetails) =>({...prevDetails, authenticated: data.authenticated, currentUser: data.user, token: data.token}));
                 
                 // Store session in local storage

@@ -1,32 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 import BasicTable from '../../components/table/table.component';
+import { DetailsContext } from '../../store/store';
 import './admin-page.styles.scss';
 
 const AdminPage = () => {
     const [user, setUser] = useState({ fullName: '', email: '' });
     const [tabs, setTabs] = useState({userList: false, addedSolah: false, registeredSolah: []});
-
+    const [details] = useContext(DetailsContext);
 
     const url = process.env.REACT_APP_URL ? 
         `${process.env.REACT_APP_URL}` : 'http://localhost:8080'
 
-    console.log(url);
 
     useEffect(()=>{
         const requestParameters = {
             method: 'get',
+            headers: {
+                'x-auth-token': details.token
+            }
         }
         fetch(`${url}/api/v1/admin/all-solah`, requestParameters)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             setTabs((prevUser) => ({...prevUser, registeredSolah: data.data}))
         }).catch(error => {
             console.log(error.message)
         });
-    }, [url]);
+    }, [url, details.token]);
     
     
     
@@ -56,7 +59,8 @@ const AdminPage = () => {
             const requestParameters = {
                 method: 'post',
                 headers: {
-                  'Content-Type': 'application/json'
+                  'Content-Type': 'application/json',
+                  'x-auth-token': details.token
                 },
                 body: JSON.stringify(values)
             }
@@ -69,7 +73,8 @@ const AdminPage = () => {
             const requestParameters = {
                 method: 'post',
                 headers: {
-                  'Content-Type': 'application/json'
+                  'Content-Type': 'application/json',
+                  'x-auth-token': details.token
                 },
                 body: JSON.stringify(user)
             }

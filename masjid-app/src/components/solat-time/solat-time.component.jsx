@@ -23,7 +23,7 @@ const SolatTime = ({ handleClick, prayer, time, batch }) => {
         fetch(`${url}/api/v1/solat-today`, requestParameters)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             setSolat(data.data);
         }).catch(error => {
             console.log(error.message)

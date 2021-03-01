@@ -24,7 +24,7 @@ function App() {
   fetch(`${url}/api/v1/index`, requestParameters)
   .then(res => res.json())
   .then(data => {
-      console.log(data);
+      // console.log(data);
       setData(data.data);
   }).catch(error => {
       console.log(error.message)

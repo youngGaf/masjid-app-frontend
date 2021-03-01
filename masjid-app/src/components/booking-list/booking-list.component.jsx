@@ -15,7 +15,7 @@ const BookingList = ({prayer, batch}) => {
         fetch(`${url}/api/v1/user/bookingList?prayer=${prayer}&batch=${batch}`, requestParameters)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            //console.log(data);
             setBookList(data.data);
         }).catch(error => {
             console.log(error.message)
