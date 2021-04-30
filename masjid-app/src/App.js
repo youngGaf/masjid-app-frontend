@@ -4,6 +4,7 @@ import AdminPage from '../src/pages/admin-page/admin-page.component';
 import BookingPage from '../src/pages/booking-page/booking-page.component'
 import Header from '../src/components/header/header.component';
 import Footer from '../src/components/footer/footer.component';
+import Loading from '../src/components/loading/loading.component';
 import { DetailsContext } from './store/store';
 import Unauthorized from '../src/components/unauthorized/unauthorized.component';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -35,8 +36,8 @@ function App() {
   return (
     <div className="App">
       <Header />
+      {solat ? 
       <Switch>
-       {solat ? 
         <Route exact path='/' 
           render={ (props) => (<BookingPage {...props} 
             bookingCount={bookingCount} 
@@ -45,13 +46,20 @@ function App() {
             batches={solat.batches}
             time={solat.time}
           />)}
-        /> : <div> Abeg I dey load </div>}
+        />
         {details.authenticated ?
           <Route exact path='/admin' component={AdminPage} /> 
           :
           solat && <Unauthorized />
         }
-      </Switch>
+      </Switch> 
+      : 
+      <div className='container flex'>
+        <div className='loader'>
+          <Loading solat={solat}/>
+        </div>
+      </div>
+      }
       <Footer />
     </div>
   );
