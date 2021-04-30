@@ -59,13 +59,14 @@
 // Mobile
 @media(max-width: 500px){
     .booking{
-
+        font-size: small;
         .booking-form{
             .booking-div{
                 text-align: center;
         
                 h2{
                     display: inline;
+                    font-size: small;
                     padding-bottom: 0px;
                     margin: 0px 15px;
                 }

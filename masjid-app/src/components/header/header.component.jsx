@@ -80,7 +80,7 @@ const Header = ({ history, match}) => {
             <div className='container flex' style={{backgroundImage: `url(${Background})`}}>
                 <h1 className='title'><Link to='/'>Masjid booking app</Link></h1>
                 {currentUser ? 
-                <CustomButton id='button' handleClick={showModal}>Admin {currentUser}</CustomButton>
+                <CustomButton id='button' handleClick={showModal}>Admin {currentUser.slice(0,7)}</CustomButton>
                 : <CustomButton id='button' handleClick={showModal}>Admin</CustomButton>
                 }
             </div>

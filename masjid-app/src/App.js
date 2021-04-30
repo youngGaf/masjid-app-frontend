@@ -36,7 +36,7 @@ function App() {
     <div className="App">
       <Header />
       <Switch>
-       {solat && 
+       {solat ? 
         <Route exact path='/' 
           render={ (props) => (<BookingPage {...props} 
             bookingCount={bookingCount} 
@@ -45,7 +45,7 @@ function App() {
             batches={solat.batches}
             time={solat.time}
           />)}
-        />}
+        /> : <div> Abeg I dey load </div>}
         {details.authenticated ?
           <Route exact path='/admin' component={AdminPage} /> 
           :

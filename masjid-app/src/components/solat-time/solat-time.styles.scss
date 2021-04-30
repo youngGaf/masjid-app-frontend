@@ -91,11 +91,15 @@
 //Tablets
 @media(max-width: 768px){
     .solat-time{
+        h2{
+            font-size: small;
+            font-weight: bold;
+        }
         margin-bottom: 100px;
         .countdown-wrapper{
             .countdown-item {
                 color:#111;
-                font-size: 20px;
+                font-size: small;
                 display: flex;
                 align-items: center;
                 justify-content: center;
